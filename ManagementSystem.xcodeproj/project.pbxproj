@@ -19,6 +19,8 @@
 		DB5BB3B11E5EF10600429FEF /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5BB3B01E5EF10600429FEF /* MenuViewController.swift */; };
 		DB5BB3B41E5F1CAD00429FEF /* CreateNewMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5BB3B21E5F1CAD00429FEF /* CreateNewMemberViewController.swift */; };
 		DB5BB3B71E5F30FB00429FEF /* MemberListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5BB3B61E5F30FB00429FEF /* MemberListCell.swift */; };
+		DB5BB3C11E5F5A8700429FEF /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5BB3C01E5F5A8700429FEF /* APIManager.m */; };
+		DB5BB3C41E5F634C00429FEF /* AppAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5BB3C31E5F634C00429FEF /* AppAccount.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +45,10 @@
 		DB5BB3B01E5EF10600429FEF /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		DB5BB3B21E5F1CAD00429FEF /* CreateNewMemberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewMemberViewController.swift; sourceTree = "<group>"; };
 		DB5BB3B61E5F30FB00429FEF /* MemberListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberListCell.swift; sourceTree = "<group>"; };
+		DB5BB3BF1E5F5A8700429FEF /* APIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
+		DB5BB3C01E5F5A8700429FEF /* APIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
+		DB5BB3C21E5F634C00429FEF /* AppAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppAccount.h; sourceTree = "<group>"; };
+		DB5BB3C31E5F634C00429FEF /* AppAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppAccount.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +158,10 @@
 		DB5BB3BB1E5F593100429FEF /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				DB5BB3BF1E5F5A8700429FEF /* APIManager.h */,
+				DB5BB3C01E5F5A8700429FEF /* APIManager.m */,
+				DB5BB3C21E5F634C00429FEF /* AppAccount.h */,
+				DB5BB3C31E5F634C00429FEF /* AppAccount.m */,
 			);
 			name = Manager;
 			sourceTree = "<group>";
@@ -281,7 +291,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB5BB3A51E5EE3CA00429FEF /* LoginViewController.m in Sources */,
+				DB5BB3C41E5F634C00429FEF /* AppAccount.m in Sources */,
 				DB5BB3B11E5EF10600429FEF /* MenuViewController.swift in Sources */,
+				DB5BB3C11E5F5A8700429FEF /* APIManager.m in Sources */,
 				DB5BB3AB1E5EEA5600429FEF /* MemberListViewController.swift in Sources */,
 				DB5BB3B71E5F30FB00429FEF /* MemberListCell.swift in Sources */,
 				DB5BB3911E5EDA9D00429FEF /* AppDelegate.m in Sources */,
