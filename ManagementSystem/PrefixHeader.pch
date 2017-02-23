@@ -1,0 +1,14 @@
+//
+//  PrefixHeader.pch
+//  ManagementSystem
+//
+//  Created by CJ Lin on 2017/2/23.
+//  Copyright © 2017年 cj. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#import "ManagementSystem-Swift.h"
+
+#endif /* PrefixHeader_pch */
