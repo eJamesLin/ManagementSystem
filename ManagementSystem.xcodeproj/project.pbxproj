@@ -95,19 +95,11 @@
 		DB5BB38B1E5EDA9D00429FEF /* ManagementSystem */ = {
 			isa = PBXGroup;
 			children = (
-				DB5BB38F1E5EDA9D00429FEF /* AppDelegate.h */,
-				DB5BB3901E5EDA9D00429FEF /* AppDelegate.m */,
-				DB5BB3AA1E5EEA5600429FEF /* MemberListViewController.swift */,
-				DB5BB3B61E5F30FB00429FEF /* MemberListCell.swift */,
-				DB5BB3A61E5EE49800429FEF /* MainNavigationController.h */,
-				DB5BB3A71E5EE49800429FEF /* MainNavigationController.m */,
-				DB5BB3951E5EDA9D00429FEF /* Main.storyboard */,
-				DB5BB3B21E5F1CAD00429FEF /* CreateNewMemberViewController.swift */,
-				DB5BB3A31E5EE3CA00429FEF /* LoginViewController.h */,
-				DB5BB3A41E5EE3CA00429FEF /* LoginViewController.m */,
-				DB5BB3B01E5EF10600429FEF /* MenuViewController.swift */,
+				DB5BB3BB1E5F593100429FEF /* Manager */,
+				DB5BB3BA1E5F592400429FEF /* Model */,
+				DB5BB3B91E5F58AB00429FEF /* View */,
+				DB5BB3B81E5F588C00429FEF /* ViewController */,
 				DB5BB3981E5EDA9D00429FEF /* Assets.xcassets */,
-				DB5BB39A1E5EDA9D00429FEF /* LaunchScreen.storyboard */,
 				DB5BB39D1E5EDA9D00429FEF /* Info.plist */,
 				DB5BB38C1E5EDA9D00429FEF /* Supporting Files */,
 				DB5BB3A91E5EEA5500429FEF /* ManagementSystem-Bridging-Header.h */,
@@ -118,10 +110,50 @@
 		DB5BB38C1E5EDA9D00429FEF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DB5BB38F1E5EDA9D00429FEF /* AppDelegate.h */,
+				DB5BB3901E5EDA9D00429FEF /* AppDelegate.m */,
 				DB5BB38D1E5EDA9D00429FEF /* main.m */,
 				DB5BB3AC1E5EEAA500429FEF /* PrefixHeader.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DB5BB3B81E5F588C00429FEF /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DB5BB3A61E5EE49800429FEF /* MainNavigationController.h */,
+				DB5BB3A71E5EE49800429FEF /* MainNavigationController.m */,
+				DB5BB3AA1E5EEA5600429FEF /* MemberListViewController.swift */,
+				DB5BB3B21E5F1CAD00429FEF /* CreateNewMemberViewController.swift */,
+				DB5BB3A31E5EE3CA00429FEF /* LoginViewController.h */,
+				DB5BB3A41E5EE3CA00429FEF /* LoginViewController.m */,
+				DB5BB3B01E5EF10600429FEF /* MenuViewController.swift */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		DB5BB3B91E5F58AB00429FEF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DB5BB3B61E5F30FB00429FEF /* MemberListCell.swift */,
+				DB5BB3951E5EDA9D00429FEF /* Main.storyboard */,
+				DB5BB39A1E5EDA9D00429FEF /* LaunchScreen.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		DB5BB3BA1E5F592400429FEF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		DB5BB3BB1E5F593100429FEF /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
