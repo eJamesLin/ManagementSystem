@@ -61,10 +61,13 @@ class CreateNewMemberViewController: UIViewController {
         if error == nil {
             let alert = UIAlertController(title: "新增成功", message: nil, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: "查看會員列表", style: .default, handler: { [weak self] action in
+                self?.navigationController?.pushViewController(MemberListViewController(), animated: true)
+            }))
             present(alert, animated: true, completion: nil)
         } else {
             let alert = UIAlertController(title: "error", message: error?.localizedDescription, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: "確認", style: .default, handler: nil))
             present(alert, animated: true, completion: nil)
         }
     }
