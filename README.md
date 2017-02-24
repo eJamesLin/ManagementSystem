@@ -5,3 +5,5 @@ Hybrid of obj-c and swift
 MVVM architecture
 
 Token auto extend
+
+Password encryption
