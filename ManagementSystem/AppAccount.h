@@ -7,13 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TokenModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @interface AppAccount : NSObject
 
 + (instancetype)sharedAppAccount;
 
-@property (nonatomic, copy, nullable) NSString *authToken;
+@property (nonatomic, strong, nullable) TokenModel *authToken;
+
+// encrypt later
+@property (nonatomic, copy, nullable) NSString *username;
+@property (nonatomic, copy, nullable) NSString *pwd;
 
 @end
 NS_ASSUME_NONNULL_END

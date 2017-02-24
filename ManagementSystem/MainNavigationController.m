@@ -9,8 +9,10 @@
 #import "MainNavigationController.h"
 #import "AppAccount.h"
 #import "LoginViewController.h"
+#import "LoginViewModel.h"
 
 static NSString * const StoryBoardMain = @"Main"; //Main.storyboard
+static NSInteger const ExtendTokenLimit = 2;
 
 @interface MainNavigationController ()
 
@@ -19,6 +21,8 @@ static NSString * const StoryBoardMain = @"Main"; //Main.storyboard
 @property (nonatomic, strong, nullable) CreateNewMemberViewController *createNewMemberVC;
 @property (nonatomic, strong, nullable) LoginViewController *loginVC;
 
+@property (nonatomic) NSInteger extendTokenTimes;
+
 @end
 
 @implementation MainNavigationController
@@ -26,6 +30,8 @@ static NSString * const StoryBoardMain = @"Main"; //Main.storyboard
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    self.extendTokenTimes = 0;
 
     self.viewControllers = @[self.loginVC];
     self.leftMenu = self.menuVC;
@@ -37,18 +43,8 @@ static NSString * const StoryBoardMain = @"Main"; //Main.storyboard
 
     // Menu 按登出
     menu.didTapLogoutClosure = ^{
-        [AppAccount sharedAppAccount].authToken = nil;
-
         __strong __typeof(weakSelf) strongSelf = weakSelf;
-        [strongSelf closeMenuWithCompletion:^{
-
-            // switch back to login
-            strongSelf.viewControllers = @[strongSelf.loginVC];
-
-            //
-            strongSelf.createNewMemberVC = nil;
-            strongSelf.memberListVC = nil;
-        }];
+        [strongSelf logout];
     };
 
     // Menu 按會員列表
@@ -84,6 +80,70 @@ static NSString * const StoryBoardMain = @"Main"; //Main.storyboard
                             strongSelf.loginVC = nil;
                         }];
     };
+}
+
+// Extend Token
+- (void)extendToken
+{
+    if (self.extendTokenTimes >= ExtendTokenLimit) {
+        [self tokenDidExpired];
+        return;
+    }
+    self.extendTokenTimes++;
+
+    NSString *username = [AppAccount sharedAppAccount].username;
+    NSString *password = [AppAccount sharedAppAccount].pwd;
+    if (![LoginViewModel checkUsername:username password:password]) {
+        [self tokenDidExpired];
+        return;
+    }
+
+    [[APIManager sharedManager] loginWithUsername:username
+                                         password:password
+                                       completion:^(TokenModel * _Nullable token, NSError * _Nullable error) {
+                                           if (!error) {
+                                               self.extendTokenTimes = 0;
+                                               [AppAccount sharedAppAccount].authToken = token;
+                                               if ([self.mainDelegate respondsToSelector:@selector(didExtendToken)]) {
+                                                   [self.mainDelegate didExtendToken];
+                                               }
+                                           } else {
+                                               [self tokenDidExpired];
+                                           }
+                                       }];
+}
+
+- (void)tokenDidExpired
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"token expired"
+                                                                       message:@"請重新登入"
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"OK"
+                                                  style:UIAlertActionStyleDefault
+                                                handler:^(UIAlertAction * _Nonnull action) {
+                                                    [self logout];
+                                                }]];
+        [self presentViewController:alert animated:YES completion:nil];
+    });
+}
+
+- (void)logout
+{
+    self.extendTokenTimes = 0;
+    [AppAccount sharedAppAccount].authToken = nil;
+
+    __weak __typeof(self) weakSelf = self;
+    [self closeMenuWithCompletion:^{
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
+
+        // switch back to login
+        strongSelf.viewControllers = @[strongSelf.loginVC];
+
+        //
+        strongSelf.createNewMemberVC = nil;
+        strongSelf.memberListVC = nil;
+    }];
 }
 
 #pragma mark - Lazy initialization

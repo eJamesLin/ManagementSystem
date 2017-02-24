@@ -29,21 +29,29 @@ class MemberListViewController: UICollectionViewController {
         collectionView?.register(MemberListCell.self, forCellWithReuseIdentifier: reuseID)
         collectionView?.backgroundColor = UIColor.white
 
-        title = "會員列表"
+        title = "列表"
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reload", style: .plain, target: self, action: #selector(reloadMemberList))
+        let reloadBtn = UIBarButtonItem(image: UIImage(named: "ic_replay"), style: .plain, target: self, action: #selector(reloadMemberList))
+        let removeTokenBtn = UIBarButtonItem(title: "移除Token", style: .plain, target: self, action: #selector(removeToken))
+        navigationItem.rightBarButtonItems = [removeTokenBtn, reloadBtn]
 
-        viewModel.didReloadClosure = { [weak self] (error) in
-            DispatchQueue.main.async {
-                if let strongSelf = self {
-                    MBProgressHUD.hide(for: strongSelf.view, animated: true)
+        viewModel.didReloadClosure = { [weak self] (error, tokenValid) in
+            if tokenValid {
+                DispatchQueue.main.async {
+                    if let strongSelf = self {
+                        MBProgressHUD.hide(for: strongSelf.view, animated: true)
+                    }
+
+                    self?.collectionView?.reloadData()
+
+                    if let error = error {
+                        self?.showAlert(error: error)
+                    }
                 }
-
-                self?.collectionView?.reloadData()
-
-                if let error = error {
-                    self?.showAlert(error: error)
-                }
+            } else {
+                let mainNavi = MainNavigationController.sharedInstance() as? MainNavigationController
+                mainNavi?.mainDelegate = self
+                mainNavi?.extendToken()
             }
         }
     }
@@ -71,9 +79,27 @@ class MemberListViewController: UICollectionViewController {
         print("\(#file) \(#function)")
     }
     #endif
+}
 
+// MARK: - test
+
+extension MemberListViewController {
     func reloadMemberList() {
         MBProgressHUD.showAdded(to: view, animated: true)
+        viewModel.reloadData()
+    }
+
+    func removeToken() {
+        print("\(#file) \(#function)")
+        AppAccount.shared().authToken = nil
+    }
+}
+
+// MARK: - MainNavigationControllerDelegate
+
+extension MemberListViewController: MainNavigationControllerDelegate {
+
+    func didExtendToken() {
         viewModel.reloadData()
     }
 }

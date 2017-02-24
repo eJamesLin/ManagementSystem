@@ -10,7 +10,7 @@ import UIKit
 
 class MemberListViewModel: NSObject {
 
-    var didReloadClosure:((Error?)->Void)?
+    var didReloadClosure:((_ error: Error?, _ tokenValid: Bool)->Void)?
     var model: [MemberModel]?
 
     func numberOfModels() -> Int {
@@ -23,16 +23,16 @@ class MemberListViewModel: NSObject {
     }
 
     func reloadData() {
-        APIManager.shared().getMemberList { [weak self] (modelArray, error) in
-            //print("\(#file) \(#function) \(modelArray) \(error)")
+        APIManager.shared().getMemberList { [weak self] (modelArray, error, tokenValid) in
 
             if error == nil {
                 self?.model = modelArray
             }
 
             if let closure = self?.didReloadClosure {
-                closure(error)
+                closure(error, tokenValid)
             }
         }
     }
+
 }
