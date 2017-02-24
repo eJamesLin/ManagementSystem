@@ -7,6 +7,7 @@
 //
 
 #import "MainNavigationController.h"
+#import "AppAccount.h"
 #import "LoginViewController.h"
 
 static NSString * const StoryBoardMain = @"Main"; //Main.storyboard
@@ -36,6 +37,8 @@ static NSString * const StoryBoardMain = @"Main"; //Main.storyboard
 
     // Menu 按登出
     menu.didTapLogoutClosure = ^{
+        [AppAccount sharedAppAccount].authToken = nil;
+
         __strong __typeof(weakSelf) strongSelf = weakSelf;
         [strongSelf closeMenuWithCompletion:^{
 
