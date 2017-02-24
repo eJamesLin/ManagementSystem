@@ -20,10 +20,10 @@
     return shared;
 }
 
-- (void)setAuthToken:(NSString *)authToken
+- (void)setAuthToken:(TokenModel *)authToken
 {
     _authToken = authToken;
-    [[APIManager sharedManager].requestSerializer setValue:authToken forHTTPHeaderField:@"Authorization"];
+    [[APIManager sharedManager].requestSerializer setValue:authToken.token forHTTPHeaderField:@"Authorization"];
 }
 
 @end

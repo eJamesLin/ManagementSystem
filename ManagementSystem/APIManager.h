@@ -8,6 +8,7 @@
 
 #import <AFNetworking/AFNetworking.h>
 #import "MemberModel.h"
+#import "TokenModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @interface APIManager : AFHTTPSessionManager
@@ -16,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)loginWithUsername:(NSString *)username
                  password:(NSString *)password
-               completion:(void (^)(NSDictionary * _Nullable dictionary, NSError * _Nullable error))completion;
+               completion:(void (^)(TokenModel * _Nullable token, NSError * _Nullable error))completion;
 
 - (void)getMemberListWithCompletion:(void (^)(NSArray<MemberModel *> * _Nullable dictionary, NSError * _Nullable error))completion;
 

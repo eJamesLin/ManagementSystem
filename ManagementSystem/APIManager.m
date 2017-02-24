@@ -8,6 +8,7 @@
 
 #import "APIManager.h"
 #import <Mantle/Mantle.h>
+#import "AppAccount.h"
 
 static NSString * const BaseURLString = @"http://52.197.192.141:3443/";
 
@@ -35,7 +36,7 @@ static NSString * const BaseURLString = @"http://52.197.192.141:3443/";
 
 - (void)loginWithUsername:(NSString *)username
                  password:(NSString *)password
-               completion:(void (^)(NSDictionary * _Nullable dictionary, NSError * _Nullable error))completion
+               completion:(void (^)(TokenModel * _Nullable token, NSError * _Nullable error))completion
 {
     if (!username || !password) { return; }
     if (!completion) { return; }
@@ -48,7 +49,11 @@ static NSString * const BaseURLString = @"http://52.197.192.141:3443/";
         if (!completion) { return; }
 
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
-            completion(responseObject, nil);
+            NSError *error = nil;
+            TokenModel *token = [MTLJSONAdapter modelOfClass:[TokenModel class]
+                                          fromJSONDictionary:responseObject[@"token"]
+                                                       error:&error];
+            completion(token, error);
         } else {
             completion(nil, [NSError errorWithDomain:@"foo error format domain"
                                                 code:9527

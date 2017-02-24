@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B62B90AE59CA1D039A665652 /* libPods-ManagementSystem.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F180E66B297A3834991D597 /* libPods-ManagementSystem.a */; };
 		DB439F9A1E609B830066F9EF /* CreateNewMemberViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB439F991E609B830066F9EF /* CreateNewMemberViewModel.swift */; };
+		DB439F9D1E60ADE70066F9EF /* TokenModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB439F9C1E60ADE70066F9EF /* TokenModel.m */; };
 		DB5BB38E1E5EDA9D00429FEF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5BB38D1E5EDA9D00429FEF /* main.m */; };
 		DB5BB3911E5EDA9D00429FEF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5BB3901E5EDA9D00429FEF /* AppDelegate.m */; };
 		DB5BB3971E5EDA9D00429FEF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB5BB3951E5EDA9D00429FEF /* Main.storyboard */; };
@@ -31,6 +32,8 @@
 		4BF0C51B7067BAB5E7B39318 /* Pods-ManagementSystem.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ManagementSystem.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ManagementSystem/Pods-ManagementSystem.debug.xcconfig"; sourceTree = "<group>"; };
 		681FF59B21A10833A45A44B1 /* Pods-ManagementSystem.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ManagementSystem.release.xcconfig"; path = "Pods/Target Support Files/Pods-ManagementSystem/Pods-ManagementSystem.release.xcconfig"; sourceTree = "<group>"; };
 		DB439F991E609B830066F9EF /* CreateNewMemberViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewMemberViewModel.swift; sourceTree = "<group>"; };
+		DB439F9B1E60ADE70066F9EF /* TokenModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TokenModel.h; sourceTree = "<group>"; };
+		DB439F9C1E60ADE70066F9EF /* TokenModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TokenModel.m; sourceTree = "<group>"; };
 		DB5BB3891E5EDA9D00429FEF /* ManagementSystem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ManagementSystem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB5BB38D1E5EDA9D00429FEF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DB5BB38F1E5EDA9D00429FEF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -167,6 +170,8 @@
 		DB5BB3BA1E5F592400429FEF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DB439F9B1E60ADE70066F9EF /* TokenModel.h */,
+				DB439F9C1E60ADE70066F9EF /* TokenModel.m */,
 				DB5BB3C91E6040AB00429FEF /* MemberModel.h */,
 				DB5BB3CA1E6040AB00429FEF /* MemberModel.m */,
 			);
@@ -318,6 +323,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB5BB3A51E5EE3CA00429FEF /* LoginViewController.m in Sources */,
+				DB439F9D1E60ADE70066F9EF /* TokenModel.m in Sources */,
 				DB5BB3C41E5F634C00429FEF /* AppAccount.m in Sources */,
 				DB5BB3B11E5EF10600429FEF /* MenuViewController.swift in Sources */,
 				DB439F9A1E609B830066F9EF /* CreateNewMemberViewModel.swift in Sources */,

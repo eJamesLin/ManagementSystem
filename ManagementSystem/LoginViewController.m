@@ -42,14 +42,20 @@
 
     [[APIManager sharedManager] loginWithUsername:self.usernameLabel.text
                                          password:self.passwordLabel.text
-                                       completion:^(NSDictionary * _Nullable dictionary, NSError * _Nullable error) {
-
+                                       completion:^(TokenModel * _Nullable token, NSError * _Nullable error) {
         dispatch_async(dispatch_get_main_queue(), ^{
 
             [MBProgressHUD hideHUDForView:self.view animated:YES];
 
             if (!error) {
-                [AppAccount sharedAppAccount].authToken = dictionary[@"token"][@"token"];
+                /*
+                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_Hant_TW"];
+                dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+                NSLog(@"expired at %@", [dateFormatter stringFromDate:token.expiredDate]);
+                 */
+
+                [AppAccount sharedAppAccount].authToken = token;
                 if (self.loginDidSuccessBlock) {
                     self.loginDidSuccessBlock();
                 }
