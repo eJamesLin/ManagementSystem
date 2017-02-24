@@ -109,7 +109,10 @@ static NSString * const BaseURLString = @"http://52.197.192.141:3443/";
     NSData *errorData = error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey];
     NSDictionary *serializedData = [NSJSONSerialization JSONObjectWithData: errorData options:NSJSONReadingAllowFragments error:nil];
     NSString *code = serializedData[@"code"];
-    if ([code isKindOfClass:[NSString class]] && [code isEqualToString:@"invalid_token"]) {
+    if (![code isKindOfClass:[NSString class]]) {
+        return NO;
+    }
+    if ([code isEqualToString:@"invalid_token"] || [code isEqualToString:@"token_not_found"]) {
         // or using 403 code per discussion
         return NO;
     } else {

@@ -29,9 +29,11 @@ class MemberListViewController: UICollectionViewController {
         collectionView?.register(MemberListCell.self, forCellWithReuseIdentifier: reuseID)
         collectionView?.backgroundColor = UIColor.white
 
-        title = "會員列表"
+        title = "列表"
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reload", style: .plain, target: self, action: #selector(reloadMemberList))
+        let reloadBtn = UIBarButtonItem(image: UIImage(named: "ic_replay"), style: .plain, target: self, action: #selector(reloadMemberList))
+        let removeTokenBtn = UIBarButtonItem(title: "移除Token", style: .plain, target: self, action: #selector(removeToken))
+        navigationItem.rightBarButtonItems = [removeTokenBtn, reloadBtn]
 
         viewModel.didReloadClosure = { [weak self] (error, tokenValid) in
             if tokenValid {
@@ -77,14 +79,23 @@ class MemberListViewController: UICollectionViewController {
         print("\(#file) \(#function)")
     }
     #endif
+}
 
+// MARK: - test
+
+extension MemberListViewController {
     func reloadMemberList() {
         MBProgressHUD.showAdded(to: view, animated: true)
         viewModel.reloadData()
     }
+
+    func removeToken() {
+        print("\(#file) \(#function)")
+        AppAccount.shared().authToken = nil
+    }
 }
 
-// MARK: -
+// MARK: - MainNavigationControllerDelegate
 
 extension MemberListViewController: MainNavigationControllerDelegate {
 

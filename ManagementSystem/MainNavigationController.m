@@ -102,6 +102,7 @@ static NSInteger const ExtendTokenLimit = 2;
                                          password:password
                                        completion:^(TokenModel * _Nullable token, NSError * _Nullable error) {
                                            if (!error) {
+                                               self.extendTokenTimes = 0;
                                                [AppAccount sharedAppAccount].authToken = token;
                                                if ([self.mainDelegate respondsToSelector:@selector(didExtendToken)]) {
                                                    [self.mainDelegate didExtendToken];
@@ -129,6 +130,7 @@ static NSInteger const ExtendTokenLimit = 2;
 
 - (void)logout
 {
+    self.extendTokenTimes = 0;
     [AppAccount sharedAppAccount].authToken = nil;
 
     __weak __typeof(self) weakSelf = self;
