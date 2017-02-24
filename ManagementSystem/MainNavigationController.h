@@ -19,4 +19,6 @@
 
 - (void)extendToken;
 
++ (NSString *)encryptString:(NSString *)string;
+
 @end

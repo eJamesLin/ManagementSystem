@@ -14,6 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - CocoaSecurity (1.2.4)
   - iOS-Slide-Menu (1.5)
   - Mantle (2.0.7):
     - Mantle/extobjc (= 2.0.7)
@@ -23,6 +24,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (= 3.1.0)
+  - CocoaSecurity (= 1.2.4)
   - iOS-Slide-Menu (= 1.5)
   - Mantle (= 2.0.7)
   - MBProgressHUD (= 1.0.0)
@@ -30,11 +32,12 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  CocoaSecurity: d288a6f87e0f363823d2cb83e753814a6944f71a
   iOS-Slide-Menu: 40b0cbd8916c42afc755f0869793cd09e7a32102
   Mantle: bc40bb061d8c2c6fb48d5083e04d928c3b7f73d9
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   PureLayout: f25f0bb904d5ccfe6e31da3cb869185259f02e0d
 
-PODFILE CHECKSUM: 48b2541f30f11713071228ee749c23b02d964553
+PODFILE CHECKSUM: dd7135fa5e42e330388f77505c826a5a5e5a8730
 
 COCOAPODS: 1.2.0

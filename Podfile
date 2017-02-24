@@ -9,4 +9,5 @@ target "ManagementSystem" do
     pod 'PureLayout', '2.0.6'
     pod 'MBProgressHUD', '1.0.0'
     pod 'iOS-Slide-Menu', '1.5'
+    pod 'CocoaSecurity', '1.2.4'
 end

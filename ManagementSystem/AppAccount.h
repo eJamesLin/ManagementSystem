@@ -16,9 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, nullable) TokenModel *authToken;
 
-// encrypt later
 @property (nonatomic, copy, nullable) NSString *username;
-@property (nonatomic, copy, nullable) NSString *pwd;
+@property (nonatomic, copy, nullable) NSString *pwd; // AES Encrypted
 
 @end
 NS_ASSUME_NONNULL_END

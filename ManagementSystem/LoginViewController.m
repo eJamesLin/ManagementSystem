@@ -39,13 +39,16 @@
         return;
     }
 
-    [AppAccount sharedAppAccount].username = self.usernameLabel.text;
-    [AppAccount sharedAppAccount].pwd = self.passwordLabel.text;
+    NSString *username = self.usernameLabel.text;
+    NSString *pwd = self.passwordLabel.text;
+
+    [AppAccount sharedAppAccount].username = username;
+    [AppAccount sharedAppAccount].pwd = [MainNavigationController encryptString:pwd];
 
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
-    [[APIManager sharedManager] loginWithUsername:self.usernameLabel.text
-                                         password:self.passwordLabel.text
+    [[APIManager sharedManager] loginWithUsername:username
+                                         password:pwd
                                        completion:^(TokenModel * _Nullable token, NSError * _Nullable error) {
         dispatch_async(dispatch_get_main_queue(), ^{
 
