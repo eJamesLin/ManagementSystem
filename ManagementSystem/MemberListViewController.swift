@@ -31,6 +31,8 @@ class MemberListViewController: UICollectionViewController {
 
         title = "會員列表"
 
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reload", style: .plain, target: self, action: #selector(reloadMemberList))
+
         viewModel.didReloadClosure = { [weak self] (error) in
             DispatchQueue.main.async {
                 self?.collectionView?.reloadData()
@@ -40,8 +42,11 @@ class MemberListViewController: UICollectionViewController {
                 }
             }
         }
+    }
 
-        //
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
         let time: TimeInterval = 1.0
         let delay = DispatchTime.now() + Double(Int64(time * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
         DispatchQueue.main.asyncAfter(deadline: delay) {
@@ -63,6 +68,10 @@ class MemberListViewController: UICollectionViewController {
         print("\(#file) \(#function)")
     }
     #endif
+
+    func reloadMemberList() {
+        viewModel.reloadData()
+    }
 }
 
 // MARK: -
@@ -72,7 +81,7 @@ extension MemberListViewController: UICollectionViewDelegateFlowLayout {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseID, for: indexPath)
         if let cell = cell as? MemberListCell, let model = viewModel.modelAt(index: indexPath.item) {
-            cell.label.text = model.name
+            cell.label.text = "\(model.identifier) : \(model.name ?? "")"
         }
         return cell
     }
