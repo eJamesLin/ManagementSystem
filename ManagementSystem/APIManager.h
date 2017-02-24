@@ -20,5 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)getMemberListWithCompletion:(void (^)(NSArray<MemberModel *> * _Nullable dictionary, NSError * _Nullable error))completion;
 
+- (void)createNewMemberWithUsername:(NSString *)username
+                         completion:(void (^)(NSError * _Nullable error))completion;
+
 @end
 NS_ASSUME_NONNULL_END

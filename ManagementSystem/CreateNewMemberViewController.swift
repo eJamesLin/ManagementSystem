@@ -10,6 +10,8 @@ import UIKit
 
 class CreateNewMemberViewController: UIViewController {
 
+    fileprivate lazy var viewModel = CreateNewMemberViewModel()
+
     lazy var nameField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Username"
@@ -42,6 +44,11 @@ class CreateNewMemberViewController: UIViewController {
         view.addSubview(actionButton)
         actionButton.autoPinEdge(.top, to: .bottom, of: nameField, withOffset: 20)
         actionButton.autoAlignAxis(toSuperviewAxis: .vertical)
+
+        // 打新增會員 API 得到 response 後的流程
+        viewModel.didGetResponseClosure = { [weak self] error in
+            self?.createMemberResult(error)
+        }
     }
 
     #if DEBUG
@@ -50,8 +57,36 @@ class CreateNewMemberViewController: UIViewController {
     }
     #endif
 
-    func didTapActionButton() {
+    func createMemberResult(_ error: Error?) {
+        if error == nil {
+            let alert = UIAlertController(title: "新增成功", message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: "查看會員列表", style: .default, handler: { [weak self] action in
+                self?.navigationController?.pushViewController(MemberListViewController(), animated: true)
+            }))
+            present(alert, animated: true, completion: nil)
+        } else {
+            let alert = UIAlertController(title: "error", message: error?.localizedDescription, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "確認", style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
+        }
+    }
 
+    func didTapActionButton() {
+        let username = nameField.text
+        let (result, message) = viewModel.checkInput(username: username)
+        guard result == true, let name = username else {
+            showInputErrorWithMessage(message)
+            return
+        }
+
+        viewModel.createMemberWithUsername(name)
+    }
+
+    func showInputErrorWithMessage(_ message: String?) {
+        let alert = UIAlertController(title: "error", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 }
 

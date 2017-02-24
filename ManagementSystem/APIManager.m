@@ -86,4 +86,31 @@ static NSString * const BaseURLString = @"http://52.197.192.141:3443/";
     }];
 }
 
+- (void)createNewMemberWithUsername:(NSString *)username
+                         completion:(void (^)(NSError * _Nullable error))completion
+{
+    if (!username) { return; }
+    if (!completion) { return; }
+
+    NSString *URLString = @"member";
+    NSDictionary *body = @{@"name":username};
+
+    [self POST:URLString parameters:body progress:nil success:^(NSURLSessionDataTask *operation, id responseObject) {
+        if (!completion) { return; }
+
+        if ([responseObject isKindOfClass:[NSDictionary class]]) {
+            completion(nil);
+        } else {
+            completion([NSError errorWithDomain:@"foo error format domain"
+                                                code:9527
+                                            userInfo:nil]);
+        }
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        if (!completion) { return; }
+
+        completion(error);
+    }];
+}
+
+
 @end
