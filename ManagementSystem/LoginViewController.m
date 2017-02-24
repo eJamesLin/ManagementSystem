@@ -38,11 +38,16 @@
         return;
     }
 
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+
     [[APIManager sharedManager] loginWithUsername:self.usernameLabel.text
                                          password:self.passwordLabel.text
                                        completion:^(NSDictionary * _Nullable dictionary, NSError * _Nullable error) {
 
         dispatch_async(dispatch_get_main_queue(), ^{
+
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+
             if (!error) {
                 [AppAccount sharedAppAccount].authToken = dictionary[@"token"][@"token"];
                 if (self.loginDidSuccessBlock) {

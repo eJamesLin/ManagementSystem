@@ -35,6 +35,10 @@ class MemberListViewController: UICollectionViewController {
 
         viewModel.didReloadClosure = { [weak self] (error) in
             DispatchQueue.main.async {
+                if let strongSelf = self {
+                    MBProgressHUD.hide(for: strongSelf.view, animated: true)
+                }
+
                 self?.collectionView?.reloadData()
 
                 if let error = error {
@@ -46,18 +50,17 @@ class MemberListViewController: UICollectionViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        let time: TimeInterval = 1.0
-        let delay = DispatchTime.now() + Double(Int64(time * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
-        DispatchQueue.main.asyncAfter(deadline: delay) {
-            self.viewModel.reloadData()
-        }
+        MBProgressHUD.showAdded(to: view, animated: true)
+        self.viewModel.reloadData()
     }
 
     func showAlert(error: Error) {
         let alert = UIAlertController(title: "error", message: error.localizedDescription, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "確認", style: .default, handler: nil))
         alert.addAction(UIAlertAction(title: "重新載入", style: .default) { [weak self] _ in
+            if let strongSelf = self {
+                MBProgressHUD.showAdded(to: strongSelf.view, animated: true)
+            }
             self?.viewModel.reloadData()
         })
         present(alert, animated: true, completion: nil)
@@ -70,6 +73,7 @@ class MemberListViewController: UICollectionViewController {
     #endif
 
     func reloadMemberList() {
+        MBProgressHUD.showAdded(to: view, animated: true)
         viewModel.reloadData()
     }
 }

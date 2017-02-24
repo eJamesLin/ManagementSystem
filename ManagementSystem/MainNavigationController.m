@@ -75,7 +75,7 @@ static NSString * const StoryBoardMain = @"Main"; //Main.storyboard
         strongSelf.menuVC.view.hidden = YES;
         [UIView transitionWithView:[MainNavigationController sharedInstance].view
                           duration:0.5f
-                           options:UIViewAnimationOptionTransitionFlipFromLeft
+                           options:UIViewAnimationOptionTransitionCrossDissolve
                         animations:^{
                             [MainNavigationController sharedInstance].viewControllers = @[strongSelf.memberListVC];
                         }
