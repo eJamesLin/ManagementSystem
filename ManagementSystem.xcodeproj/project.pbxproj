@@ -21,6 +21,8 @@
 		DB5BB3B71E5F30FB00429FEF /* MemberListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5BB3B61E5F30FB00429FEF /* MemberListCell.swift */; };
 		DB5BB3C11E5F5A8700429FEF /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5BB3C01E5F5A8700429FEF /* APIManager.m */; };
 		DB5BB3C41E5F634C00429FEF /* AppAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5BB3C31E5F634C00429FEF /* AppAccount.m */; };
+		DB5BB3C81E6036CA00429FEF /* MemberListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5BB3C71E6036CA00429FEF /* MemberListViewModel.swift */; };
+		DB5BB3CB1E6040AB00429FEF /* MemberModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5BB3CA1E6040AB00429FEF /* MemberModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +51,9 @@
 		DB5BB3C01E5F5A8700429FEF /* APIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
 		DB5BB3C21E5F634C00429FEF /* AppAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppAccount.h; sourceTree = "<group>"; };
 		DB5BB3C31E5F634C00429FEF /* AppAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppAccount.m; sourceTree = "<group>"; };
+		DB5BB3C71E6036CA00429FEF /* MemberListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberListViewModel.swift; sourceTree = "<group>"; };
+		DB5BB3C91E6040AB00429FEF /* MemberModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberModel.h; sourceTree = "<group>"; };
+		DB5BB3CA1E6040AB00429FEF /* MemberModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,7 +134,7 @@
 			children = (
 				DB5BB3A61E5EE49800429FEF /* MainNavigationController.h */,
 				DB5BB3A71E5EE49800429FEF /* MainNavigationController.m */,
-				DB5BB3AA1E5EEA5600429FEF /* MemberListViewController.swift */,
+				DB5BB3C61E6036AB00429FEF /* MemberListViewController */,
 				DB5BB3B21E5F1CAD00429FEF /* CreateNewMemberViewController.swift */,
 				DB5BB3A31E5EE3CA00429FEF /* LoginViewController.h */,
 				DB5BB3A41E5EE3CA00429FEF /* LoginViewController.m */,
@@ -151,6 +156,8 @@
 		DB5BB3BA1E5F592400429FEF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DB5BB3C91E6040AB00429FEF /* MemberModel.h */,
+				DB5BB3CA1E6040AB00429FEF /* MemberModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -164,6 +171,15 @@
 				DB5BB3C31E5F634C00429FEF /* AppAccount.m */,
 			);
 			name = Manager;
+			sourceTree = "<group>";
+		};
+		DB5BB3C61E6036AB00429FEF /* MemberListViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DB5BB3AA1E5EEA5600429FEF /* MemberListViewController.swift */,
+				DB5BB3C71E6036CA00429FEF /* MemberListViewModel.swift */,
+			);
+			name = MemberListViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -295,9 +311,11 @@
 				DB5BB3B11E5EF10600429FEF /* MenuViewController.swift in Sources */,
 				DB5BB3C11E5F5A8700429FEF /* APIManager.m in Sources */,
 				DB5BB3AB1E5EEA5600429FEF /* MemberListViewController.swift in Sources */,
+				DB5BB3C81E6036CA00429FEF /* MemberListViewModel.swift in Sources */,
 				DB5BB3B71E5F30FB00429FEF /* MemberListCell.swift in Sources */,
 				DB5BB3911E5EDA9D00429FEF /* AppDelegate.m in Sources */,
 				DB5BB3B41E5F1CAD00429FEF /* CreateNewMemberViewController.swift in Sources */,
+				DB5BB3CB1E6040AB00429FEF /* MemberModel.m in Sources */,
 				DB5BB38E1E5EDA9D00429FEF /* main.m in Sources */,
 				DB5BB3A81E5EE49800429FEF /* MainNavigationController.m in Sources */,
 			);
