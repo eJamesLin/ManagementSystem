@@ -33,17 +33,23 @@ class MemberListViewController: UICollectionViewController {
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reload", style: .plain, target: self, action: #selector(reloadMemberList))
 
-        viewModel.didReloadClosure = { [weak self] (error) in
-            DispatchQueue.main.async {
-                if let strongSelf = self {
-                    MBProgressHUD.hide(for: strongSelf.view, animated: true)
-                }
+        viewModel.didReloadClosure = { [weak self] (error, tokenValid) in
+            if tokenValid {
+                DispatchQueue.main.async {
+                    if let strongSelf = self {
+                        MBProgressHUD.hide(for: strongSelf.view, animated: true)
+                    }
 
-                self?.collectionView?.reloadData()
+                    self?.collectionView?.reloadData()
 
-                if let error = error {
-                    self?.showAlert(error: error)
+                    if let error = error {
+                        self?.showAlert(error: error)
+                    }
                 }
+            } else {
+                let mainNavi = MainNavigationController.sharedInstance() as? MainNavigationController
+                mainNavi?.mainDelegate = self
+                mainNavi?.extendToken()
             }
         }
     }
@@ -74,6 +80,15 @@ class MemberListViewController: UICollectionViewController {
 
     func reloadMemberList() {
         MBProgressHUD.showAdded(to: view, animated: true)
+        viewModel.reloadData()
+    }
+}
+
+// MARK: -
+
+extension MemberListViewController: MainNavigationControllerDelegate {
+
+    func didExtendToken() {
         viewModel.reloadData()
     }
 }

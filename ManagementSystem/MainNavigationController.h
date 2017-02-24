@@ -8,6 +8,15 @@
 
 #import <iOS-Slide-Menu/SlideNavigationController.h>
 
+@protocol MainNavigationControllerDelegate <NSObject>
+@optional
+- (void)didExtendToken;
+@end
+
 @interface MainNavigationController : SlideNavigationController
+
+@property (nonatomic, weak) id <MainNavigationControllerDelegate> mainDelegate;
+
+- (void)extendToken;
 
 @end

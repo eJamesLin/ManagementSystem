@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
                  password:(NSString *)password
                completion:(void (^)(TokenModel * _Nullable token, NSError * _Nullable error))completion;
 
-- (void)getMemberListWithCompletion:(void (^)(NSArray<MemberModel *> * _Nullable dictionary, NSError * _Nullable error))completion;
+- (void)getMemberListWithCompletion:(void (^)(NSArray<MemberModel *> * _Nullable dictionary, NSError * _Nullable error, BOOL tokenValid))completion;
 
 - (void)createNewMemberWithUsername:(NSString *)username
                          completion:(void (^)(NSError * _Nullable error))completion;
