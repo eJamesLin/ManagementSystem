@@ -63,7 +63,7 @@
 - (BOOL)checkUsername:(NSString *)username
              password:(NSString *)password
 {
-    if (self.usernameLabel.text.length > 0 && self.passwordLabel.text.length > 0) {
+    if (username.length > 0 && password.length > 0) {
         return YES;
     }
 
