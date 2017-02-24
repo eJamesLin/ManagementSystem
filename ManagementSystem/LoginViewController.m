@@ -33,7 +33,10 @@
 
 - (IBAction)loginTapped:(id)sender
 {
-    if (![self checkUsername:self.usernameLabel.text password:self.passwordLabel.text]) { return; }
+    if (![self checkUsername:self.usernameLabel.text password:self.passwordLabel.text]) {
+        [self showInputError];
+        return;
+    }
 
     [[APIManager sharedManager] loginWithUsername:self.usernameLabel.text
                                          password:self.passwordLabel.text
@@ -46,28 +49,43 @@
                     self.loginDidSuccessBlock();
                 }
             } else {
-                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"error"
-                                                                               message:error.localizedDescription
-                                                                        preferredStyle:UIAlertControllerStyleAlert];
-                [alert addAction:[UIAlertAction actionWithTitle:@"OK"
-                                                          style:UIAlertActionStyleDefault
-                                                        handler:nil]];
-                [self presentViewController:alert
-                                   animated:YES
-                                 completion:nil];
+                [self showServerLoginWithError:error];
             }
         });
     }];
 }
 
+- (void)showServerLoginWithError:(NSError *)error
+{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"error"
+                                                                   message:error.localizedDescription
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"OK"
+                                              style:UIAlertActionStyleDefault
+                                            handler:nil]];
+    [self presentViewController:alert
+                       animated:YES
+                     completion:nil];
+}
+
 - (BOOL)checkUsername:(NSString *)username
              password:(NSString *)password
 {
-    if (self.usernameLabel.text.length > 0 && self.passwordLabel.text.length > 0) {
+    if (username.length > 0 && password.length > 0) {
         return YES;
     }
 
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"請輸入帳號密碼"
+    //
+    // ....
+    // other check list
+    //
+
+    return NO;
+}
+
+- (void)showInputError
+{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"帳密輸入有誤"
                                                                    message:nil
                                                             preferredStyle:UIAlertControllerStyleAlert];
     [alert addAction:[UIAlertAction actionWithTitle:@"OK"
@@ -76,14 +94,6 @@
     [self presentViewController:alert
                        animated:YES
                      completion:nil];
-
-    //
-    // ....
-    // other check list
-    //
-
-
-    return NO;
 }
 
 @end
