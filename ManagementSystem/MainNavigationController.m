@@ -8,6 +8,7 @@
 
 #import "MainNavigationController.h"
 #import "AppAccount.h"
+#import <CocoaSecurity/CocoaSecurity.h>
 #import "LoginViewController.h"
 #import "LoginViewModel.h"
 
@@ -82,6 +83,12 @@ static NSInteger const ExtendTokenLimit = 2;
     };
 }
 
++ (NSString *)encryptString:(NSString *)string
+{
+    return [CocoaSecurity aesEncrypt:string
+                                 key:[UIDevice currentDevice].identifierForVendor.UUIDString].base64;
+}
+
 // Extend Token
 - (void)extendToken
 {
@@ -92,7 +99,9 @@ static NSInteger const ExtendTokenLimit = 2;
     self.extendTokenTimes++;
 
     NSString *username = [AppAccount sharedAppAccount].username;
-    NSString *password = [AppAccount sharedAppAccount].pwd;
+    NSString *password = [CocoaSecurity aesDecryptWithBase64:[AppAccount sharedAppAccount].pwd
+                                                         key:[UIDevice currentDevice].identifierForVendor.UUIDString].utf8String;
+ ;
     if (![LoginViewModel checkUsername:username password:password]) {
         [self tokenDidExpired];
         return;
@@ -132,6 +141,8 @@ static NSInteger const ExtendTokenLimit = 2;
 {
     self.extendTokenTimes = 0;
     [AppAccount sharedAppAccount].authToken = nil;
+    [AppAccount sharedAppAccount].username = nil;
+    [AppAccount sharedAppAccount].pwd= nil;
 
     __weak __typeof(self) weakSelf = self;
     [self closeMenuWithCompletion:^{
